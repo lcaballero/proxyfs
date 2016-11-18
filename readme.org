@@ -1,0 +1,6 @@
+* Introduction
+
+`proxyfs` is a read-once then cached file system intended to mount a
+file directory.  Load of the content is deferred until the file is
+requested.  Content changes are not intended to be written via
+this interface.
