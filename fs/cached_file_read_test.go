@@ -5,30 +5,54 @@ import (
 	. "github.com/lcaballero/exam/assert"
 )
 
+func Test_CachedFile_Read_004(t *testing.T) {
+	t.Log("final read should return less than buffer size (when remaining bytes to read are fewer than buffer size)")
+
+	cf := &CachedFile{
+		bin: []byte("abc def xyz"),
+	}
+
+	read := make([]byte, 4)
+	numBytesRead, _ := cf.Read(read)
+	numBytesRead, _ = cf.Read(read)
+	numBytesRead, _ = cf.Read(read)
+	IsEqInt(t, numBytesRead, 3)
+	IsEqBytes(t, read[0:3], []byte("xyz"))
+}
+
 func Test_CachedFile_Read_003(t *testing.T) {
-	t.Log("offset if beyond the bounds of the cached file binary")
+	t.Log("an incomplete read followed by another read should return the next bytes")
+
+	cf := &CachedFile{
+		bin: []byte("abc def xyz"),
+	}
+
+	read := make([]byte, 4)
+	numBytesRead, _ := cf.Read(read)
+	numBytesRead, _ = cf.Read(read)
+	IsEqInt(t, numBytesRead, len(read))
+	IsEqBytes(t, read, []byte("def "))
 }
 
 func Test_CachedFile_Read_002(t *testing.T) {
-	t.Log("reading the first slice of bytes from the file should match file contents")
+	t.Log("the first read call should fill the buffer with bytes from the file")
 
-	fs, _ := NewCachedFiles(mountAt())
-	f, _ := fs.Open("example-file.txt")
+	cf := &CachedFile{
+		bin: []byte("abc def xyz"),
+	}
 
-	ct0 := "example-file\n"
-	ct1 := "this should be readable"
-	b := make([]byte, len(ct1))
+	read := make([]byte, 4)
+	numBytesRead, err := cf.Read(read)
 
-	n, err := f.ReadAt(b, int64(len(ct0)))
 	IsNil(t, err)
-	IsEqInt(t, n, len(b))
-	IsEqStrings(t, string(b), ct1)
+	IsEqInt(t, numBytesRead, len(read))
+	IsEqBytes(t, read, []byte("abc "))
 }
 
 func Test_CachedFile_Read_001(t *testing.T) {
 	t.Log("reading the first slice of bytes from the file should match file contents")
 
-	fs, _ := NewCachedFiles(mountAt())
+	fs, _ := NewCachedFileSystem(mountAt())
 	f, _ := fs.Open("example-file.txt")
 
 	ct := "example-file"
