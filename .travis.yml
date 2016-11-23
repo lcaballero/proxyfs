@@ -1,0 +1,11 @@
+language: go
+
+go:
+   - 1.6
+
+install:
+- export PATH=$PATH:$HOME/gopath/bin
+- go get github.com/lcaballero/exam
+- go get github.com/lcaballero/proxyfs
+
+script: cd $HOME/gopath/src/github.com/lcaballero/proxyfs && go test --race ./...
