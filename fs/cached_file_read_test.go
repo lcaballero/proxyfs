@@ -1,8 +1,8 @@
 package fs
 
 import (
-	"testing"
 	. "github.com/lcaballero/exam/assert"
+	"testing"
 )
 
 func Test_CachedFile_Read_004(t *testing.T) {

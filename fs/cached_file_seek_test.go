@@ -1,8 +1,8 @@
 package fs
 
 import (
-	"testing"
 	. "github.com/lcaballero/exam/assert"
+	"testing"
 )
 
 const abc = "abc edf xyz"
@@ -40,7 +40,7 @@ func Test_CachedFile_Seek_003(t *testing.T) {
 	cf := abcCachedFile()
 	mark, err := cf.Seek(3, FromTheEnd)
 	IsNil(t, err)
-	IsTrue(t, mark == int64(len(abc) - 3))
+	IsTrue(t, mark == int64(len(abc)-3))
 }
 
 func Test_CachedFile_Seek_002(t *testing.T) {

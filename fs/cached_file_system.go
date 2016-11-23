@@ -12,7 +12,7 @@ type CachedFileSystem struct {
 	files map[string]File
 }
 
-// NewCachedFiles creates a FileSystem over the given directory, which
+// NewCachedFileSystem creates a FileSystem over the given directory, which
 // must be an absolute path.  If the directory provided is not absolute
 // an error.
 func NewCachedFileSystem(root string) (FileSystem, error) {
