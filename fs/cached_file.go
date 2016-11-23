@@ -47,7 +47,7 @@ func (c *CachedFile) Read(p []byte) (n int, err error) {
 }
 
 // ReadAt fills the destination slice with bytes from the file starting
-// at the provided offset, reading upto dest length, or the remainder of
+// at the provided offset, reading up to dest length, or the remainder of
 // bytes in the file.  The number of bytes read and an error should one
 // occur is returned.
 func (c *CachedFile) ReadAt(p []byte, off int64) (n int, err error) {
