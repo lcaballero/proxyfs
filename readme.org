@@ -1,3 +1,14 @@
+#+BEGIN_HTML
+<img src="https://goreportcard.com/badge/github.com/lcaballero/proxyfs" 
+     tag="https://goreportcard.com/badge/github.com/lcaballero/proxyfs" />
+
+<a href="https://godoc.org/github.com/lcaballero/proxyfs">
+   <img src="https://godoc.org/github.com/lcaballero/proxyfs?status.svg" alt="GoDoc"/>
+</a>
+
+<img src="https://travis-ci.org/lcaballero/proxyfs.svg?branch=master"/>
+#+END_HTML
+
 * Introduction
 
 `proxyfs` is a read-once then cached file system intended to mount a

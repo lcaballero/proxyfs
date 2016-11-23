@@ -17,9 +17,9 @@ type CachedFileSystem struct {
 // an error.
 func NewCachedFileSystem(root string) (FileSystem, error) {
 	if !filepath.IsAbs(root) {
-		return CachedFileSystem{}, ErrPathNotAbsolute
+		return nil, ErrPathNotAbsolute
 	}
-	cf := CachedFileSystem{
+	cf := &CachedFileSystem{
 		root:  root,
 		files: make(map[string]File),
 	}
@@ -29,7 +29,7 @@ func NewCachedFileSystem(root string) (FileSystem, error) {
 // Open maps the given name to a file rooted at the mount point of the
 // CachedFileSystem returning a File if it exists or an error if one
 // occurs while reading the file.
-func (c CachedFileSystem) Open(name string) (File, error) {
+func (c *CachedFileSystem) Open(name string) (File, error) {
 	path := filepath.Join(c.root, name)
 	if !filepath.IsAbs(path) {
 		return nil, ErrPathNotAbsolute
