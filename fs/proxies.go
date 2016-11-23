@@ -1,8 +1,8 @@
 package fs
 
 import (
-	"os"
 	"io"
+	"os"
 )
 
 // FileSystem provides the Open method to obtain File instances that
@@ -20,4 +20,3 @@ type File interface {
 	io.Seeker
 	Stat() (os.FileInfo, error)
 }
-

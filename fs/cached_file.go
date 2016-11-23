@@ -2,8 +2,8 @@ package fs
 
 import (
 	"errors"
-	"os"
 	"io"
+	"os"
 )
 
 // A CachedFile represents
@@ -78,7 +78,7 @@ var ErrNegativeReadOffsetAfterSeek = errors.New("negative read offset after seek
 // beyond the end of the file after a Seek call.
 var ErrOffsetGreaterThanFileSizeAfterSeek = errors.New("offset greater then file length after seek")
 
-//
+// Seek implements io.Seek interface over a CachedFile.
 func (c *CachedFile) Seek(offset int64, whence int) (int64, error) {
 	var pos int64
 	switch whence {
@@ -101,6 +101,7 @@ func (c *CachedFile) Seek(offset int64, whence int) (int64, error) {
 	return int64(c.mark), nil
 }
 
+// Stat implements the Stat from the File interface.
 func (c *CachedFile) Stat() (os.FileInfo, error) {
 	return c.info, nil
 }
