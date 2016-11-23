@@ -18,7 +18,7 @@ func Test_Cached_File_003(t *testing.T) {
 
 	fs, _ := NewCachedFileSystem(mountAt())
 	fs.Open("example-file.txt")
-	cfs, ok := fs.(CachedFileSystem)
+	cfs, ok := fs.(*CachedFileSystem)
 
 	IsTrue(t, ok)
 	IsEqInt(t, len(cfs.files), 1)
@@ -35,7 +35,7 @@ func Test_Cached_File_002(t *testing.T) {
 
 	fs, _ := NewCachedFileSystem(mountAt())
 	fs.Open("example-file.txt")
-	cfs, ok := fs.(CachedFileSystem)
+	cfs, ok := fs.(*CachedFileSystem)
 
 	IsTrue(t, ok)
 	IsEqInt(t, len(cfs.files), 1)
