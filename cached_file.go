@@ -3,7 +3,6 @@ package proxyfs
 import (
 	"errors"
 	"io"
-	"os"
 )
 
 // A CachedFile represents
@@ -102,6 +101,6 @@ func (c *CachedFile) Seek(offset int64, whence int) (int64, error) {
 }
 
 // Stat implements the Stat from the File interface.
-func (c *CachedFile) Stat() (os.FileInfo, error) {
+func (c *CachedFile) Stat() (FileInfo, error) {
 	return c.info, nil
 }

@@ -19,10 +19,10 @@ type File interface {
 	io.Reader
 	io.ReaderAt
 	io.Seeker
-	Stat() (os.FileInfo, error)
+	Stat() (FileInfo, error)
 }
 
-// The interface provided to match the os.FileInfo object.
+// FileInfo interface provided to match the os.FileInfo object.
 type FileInfo interface {
 	Name() string
 	Size() int64
@@ -31,3 +31,10 @@ type FileInfo interface {
 	IsDir() bool
 	Sys() interface{}
 }
+
+// OpenProvider is a function signature for opening files to be read from
+// the file system.
+type OpenProvider func(string) ([]byte, error)
+
+// InfoProvider is a function signature for obtaining FileInfo instances.
+type InfoProvider func(string) (os.FileInfo, error)
