@@ -1,16 +1,15 @@
-package fs
+package proxyfs
 
 import (
 	"errors"
 	"io"
-	"os"
 )
 
 // A CachedFile represents
 type CachedFile struct {
 	path string
 	bin  []byte
-	info os.FileInfo
+	info FileInfo
 	mark int64
 }
 
@@ -102,6 +101,6 @@ func (c *CachedFile) Seek(offset int64, whence int) (int64, error) {
 }
 
 // Stat implements the Stat from the File interface.
-func (c *CachedFile) Stat() (os.FileInfo, error) {
+func (c *CachedFile) Stat() (FileInfo, error) {
 	return c.info, nil
 }
