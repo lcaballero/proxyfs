@@ -16,7 +16,7 @@ type EmbeddedFileSystem struct {
 // that open and provide file-info.
 func NewEmbeddedFileSystem(
 	open OpenProvider,
-	info InfoProvider) (*EmbeddedFileSystem, error) {
+	info InfoProvider) (FileSystem, error) {
 
 	if open == nil {
 		return nil, ErrProviderIsNil
