@@ -1,4 +1,4 @@
-package fs
+package proxyfs
 
 import (
 	"errors"
@@ -10,7 +10,7 @@ import (
 type CachedFile struct {
 	path string
 	bin  []byte
-	info os.FileInfo
+	info FileInfo
 	mark int64
 }
 

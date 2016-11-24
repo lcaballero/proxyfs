@@ -1,8 +1,9 @@
-package fs
+package proxyfs
 
 import (
 	"io"
 	"os"
+	"time"
 )
 
 // FileSystem provides the Open method to obtain File instances that
@@ -19,4 +20,14 @@ type File interface {
 	io.ReaderAt
 	io.Seeker
 	Stat() (os.FileInfo, error)
+}
+
+// The interface provided to match the os.FileInfo object.
+type FileInfo interface {
+	Name() string
+	Size() int64
+	Mode() os.FileMode
+	ModTime() time.Time
+	IsDir() bool
+	Sys() interface{}
 }
